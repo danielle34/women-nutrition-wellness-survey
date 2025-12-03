@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Women’s Comprehensive Nutrition & Wellness Assessment</title>
+    <!-- Import Inter Font for a more modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Professional Healthcare Palette */
             --primary-color: #0f2c4a; /* Deep Navy */
+            --primary-light: #1a4b78;
             --accent-color: #2a9d8f;  /* Muted Teal */
-            --bg-color: #f4f6f8;      /* Soft Blue-Gray Background */
+            --accent-hover: #21867a;
+            --bg-color: #f0f4f8;      /* Very soft Blue-Gray Background */
             --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --border-color: #e0e0e0;
-            --focus-glow: rgba(42, 157, 143, 0.25);
-            --danger-color: #d32f2f;
-            --hover-row: #f8fcfc;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --input-bg: #f9fafb;
+            --focus-ring: rgba(42, 157, 143, 0.4);
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-pill: 9999px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -24,47 +33,50 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.6;
             margin: 0;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Header Styles */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #163e66 100%);
             color: white;
-            padding: 2.5rem 1rem;
+            padding: 3rem 1.5rem;
             text-align: center;
+            box-shadow: var(--shadow-md);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
         }
 
         header p {
-            margin: 0.8rem 0 0;
-            opacity: 0.9;
-            font-size: 1.1rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 1rem auto 0;
+            opacity: 0.95;
+            font-size: 1.125rem;
+            max-width: 750px;
             font-weight: 300;
+            color: #e0e7ff;
         }
 
         /* Navigation */
         nav {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-sm);
             overflow-x: auto;
             white-space: nowrap;
         }
@@ -75,7 +87,7 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            min-width: 600px; /* Ensure scrolling on small screens */
+            min-width: 600px;
         }
 
         nav li {
@@ -88,51 +100,69 @@
             text-decoration: none;
             color: var(--text-muted);
             font-weight: 500;
-            border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            border-bottom: 2px solid transparent;
             transition: all 0.2s;
         }
 
         nav a:hover, nav a:focus {
             color: var(--primary-color);
-            background-color: #fafafa;
+            background-color: #f9fafb;
+        }
+        
+        nav a:active {
+            color: var(--accent-color);
         }
 
         /* Main Container */
         .container {
             max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
         }
 
         /* Form Sections */
         section {
             background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2.5rem;
             overflow: hidden;
-            border-left: 5px solid var(--accent-color);
-            scroll-margin-top: 80px; /* For sticky nav offset */
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--accent-color); /* Top Accent */
+            scroll-margin-top: 90px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        /* Subtle lift on focus within section */
+        section:focus-within {
+            box-shadow: var(--shadow-lg);
+            border-color: #cbd5e1;
         }
 
         .section-header {
-            background-color: #fafafa;
-            padding: 1.5rem;
+            background-color: #f8fafc;
+            padding: 1.75rem 2rem;
             border-bottom: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
 
         .section-header h2 {
             margin: 0;
             color: var(--primary-color);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
 
         .section-header span {
-            display: block;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--text-muted);
-            margin-top: 4px;
-            font-weight: normal;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
         .section-body {
@@ -141,14 +171,15 @@
 
         /* Question Groups */
         .question-group {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px dashed var(--border-color);
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #f3f4f6;
         }
 
         .question-group:last-child {
             border-bottom: none;
             margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         fieldset {
@@ -160,53 +191,159 @@
         legend {
             font-weight: 600;
             color: var(--primary-color);
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
             display: block;
             width: 100%;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 0.75rem;
+            line-height: 1.2;
         }
 
         label.sub-label {
             display: block;
             font-weight: 600;
             color: var(--text-main);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
         }
 
-        /* Inputs */
+        /* Custom Input Styles */
         .input-row {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
             align-items: center;
         }
-
+        
+        /* Base styling for all inputs */
         input[type="text"],
         input[type="number"],
         input[type="month"],
-        input[type="time"],
-        select {
-            padding: 0.6rem;
+        input[type="time"] {
+            padding: 0.75rem 1rem;
             border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 1rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
             width: 100%;
-            max-width: 300px;
+            max-width: 320px;
             font-family: inherit;
+            background-color: var(--input-bg);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-main);
         }
 
-        input[type="number"] {
-            width: 100px;
+        /* Custom Select Styling */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding: 0.75rem 2.5rem 0.75rem 1rem; /* Extra right padding for arrow */
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            width: 100%;
+            max-width: 320px;
+            font-family: inherit;
+            background-color: var(--input-bg);
+            color: var(--text-main);
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Custom Arrow SVG */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.25em;
+        }
+
+        input:hover, select:hover {
+            border-color: #9ca3af;
+            background-color: #fff;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px var(--focus-glow);
+            background-color: #fff;
+            box-shadow: 0 0 0 4px var(--focus-ring);
         }
 
-        /* Custom Radios/Checkboxes Wrapper */
+        input[type="number"] {
+            width: 140px;
+        }
+
+        /* Custom Radios & Checkboxes */
+        /* Hiding default styling */
+        input[type="radio"],
+        input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.25em;
+            height: 1.25em;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-right: 0.75rem;
+            margin-top: 0.15rem; /* Optical alignment */
+            flex-shrink: 0;
+        }
+
+        input[type="checkbox"] {
+            border-radius: 6px; /* Square for checkbox */
+        }
+
+        /* Radio inner circle */
+        input[type="radio"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            border-radius: 50%;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            background-color: white; /* The dot color when not using accent-color trick */
+        }
+        
+        /* Checkbox checkmark */
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            background-color: white;
+        }
+
+        /* Checked States */
+        input[type="radio"]:checked,
+        input[type="checkbox"]:checked {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+        }
+
+        input[type="radio"]:checked::before,
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+        
+        /* Focus states for radios/checks */
+        input[type="radio"]:focus,
+        input[type="checkbox"]:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--focus-ring);
+            border-color: var(--accent-color);
+        }
+
+        /* Option Labels (Containers) */
         .option-group {
             display: flex;
             flex-direction: column;
@@ -217,162 +354,241 @@
             display: flex;
             align-items: flex-start;
             cursor: pointer;
-            padding: 0.4rem;
-            border-radius: 4px;
-            transition: background 0.2s;
+            padding: 0.6rem 0.75rem;
+            border-radius: var(--radius-md);
+            transition: background-color 0.2s;
+            border: 1px solid transparent; /* Prevent jump on border change */
         }
 
         .option-label:hover {
-            background-color: var(--hover-row);
+            background-color: #f3f4f6;
         }
-
-        .option-label input {
-            margin-top: 0.3rem;
-            margin-right: 0.8rem;
-            transform: scale(1.1);
+        
+        /* Highlight container if child input checked (requires JS or :has) */
+        /* CSS :has support is growing but good to have fallback styling */
+        .option-label:has(input:checked) {
+            background-color: #f0fdf9; /* Very light teal */
+            border-color: #ccfbf1;
         }
 
         /* Matrix / Likert Scale Grid */
         .matrix-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 1rem;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-bottom: 1.5rem;
             font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
         }
 
         .matrix-table th, .matrix-table td {
             text-align: center;
-            padding: 0.75rem;
+            padding: 1rem;
             border-bottom: 1px solid var(--border-color);
             vertical-align: middle;
+            background-color: #fff;
         }
         
+        /* Column borders for clarity */
+        .matrix-table th:not(:last-child), 
+        .matrix-table td:not(:last-child) {
+            border-right: 1px solid #f3f4f6;
+        }
+
         .matrix-table td:first-child {
             text-align: left;
             width: 40%;
+            font-weight: 500;
+            color: var(--text-main);
         }
 
         .matrix-table th {
-            background-color: #fafafa;
+            background-color: #f9fafb;
             font-weight: 600;
             color: var(--text-muted);
             font-size: 0.85rem;
-            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Center the custom inputs in table cells */
+        .matrix-table td input[type="radio"] {
+            margin: 0 auto;
         }
 
-        .matrix-table th:first-child {
-            text-align: left;
+        .matrix-table tr:last-child td {
+            border-bottom: none;
         }
 
-        .matrix-table tr:hover {
-            background-color: var(--hover-row);
+        .matrix-table tr:hover td {
+            background-color: #f9fafb;
+        }
+        
+        .matrix-table tr:hover td:first-child {
+            background-color: #f9fafb;
         }
 
         /* Scale Labels in Header */
         .scale-header {
-            font-size: 0.8rem;
-            font-weight: normal;
+            font-size: 0.75rem;
+            font-weight: 500;
             display: block;
-            margin-top: 2px;
-            color: #888;
+            margin-top: 4px;
+            color: #9ca3af;
+            text-transform: none;
         }
         
-        /* Responsive Matrix for mobile */
-        @media (max-width: 768px) {
-            .matrix-table thead { display: none; }
-            .matrix-table tr { 
-                display: flex; 
-                flex-direction: column; 
-                margin-bottom: 1.5rem; 
-                border: 1px solid var(--border-color); 
-                border-radius: 6px; 
-                overflow: hidden;
-            }
-            .matrix-table td { 
-                display: flex; 
-                justify-content: space-between; 
-                align-items: center; 
-                border-bottom: 1px solid #eee; 
-                padding: 0.8rem; 
-                text-align: left; 
-                width: 100%;
-            }
-            .matrix-table td:first-child { 
-                font-weight: bold; 
-                background: #f9f9f9; 
-                color: var(--primary-color);
-            }
-            /* Add pseudo-labels for mobile context if needed, 
-               or simple rely on the row layout */
-            .matrix-table td::before {
-                content: attr(data-label);
-                font-weight: 600;
-                font-size: 0.85rem;
-                color: var(--text-muted);
-                margin-right: 1rem;
-            }
+        /* Category headers in matrix */
+        td[colspan="5"] {
+            background-color: #eef2f6 !important;
+            font-weight: 700 !important;
+            color: var(--primary-color);
+            text-align: left !important;
+            padding-left: 1.5rem !important;
+            font-size: 0.9rem;
+            letter-spacing: 0.025em;
         }
 
         /* Grid for 2-column questions */
         .grid-2-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 2.5rem;
         }
-        
+
+        /* Responsive */
         @media (max-width: 768px) {
             .grid-2-col {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            nav {
+                top: 0;
+            }
+            
+            nav ul {
+                min-width: auto;
+                justify-content: flex-start;
+                padding-left: 1rem;
+            }
+
+            .matrix-table {
+                border: 0;
+            }
+
+            .matrix-table thead { display: none; }
+            .matrix-table tr { 
+                display: flex; 
+                flex-direction: column; 
+                margin-bottom: 1.5rem; 
+                border: 1px solid var(--border-color); 
+                border-radius: var(--radius-lg); 
+                overflow: hidden;
+                box-shadow: var(--shadow-sm);
+            }
+            .matrix-table td { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                border-bottom: 1px solid #eee; 
+                padding: 1rem; 
+                text-align: left; 
+                width: 100%;
+                border-right: none !important;
+            }
+            .matrix-table td:first-child { 
+                font-weight: 600; 
+                background: #f8fafc; 
+                color: var(--primary-color);
+                border-bottom: 2px solid #e5e7eb;
+            }
+            .matrix-table td::before {
+                content: attr(data-label);
+                font-weight: 500;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-right: 1rem;
+            }
+            .matrix-table td input[type="radio"] {
+                margin: 0; /* Reset auto margin */
             }
         }
 
-        /* Footer Buttons */
+        /* Footer Buttons - High End */
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 1rem;
-            margin-top: 2rem;
-            padding: 1rem;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding: 1rem 0;
         }
 
         .btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 2.5rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            border: none;
-            transition: background 0.2s;
+            border: 1px solid transparent;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.025em;
+            box-shadow: var(--shadow-sm);
+            text-transform: uppercase;
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
             color: white;
+            box-shadow: 0 4px 6px rgba(15, 44, 74, 0.25);
         }
 
         .btn-primary:hover {
-            background-color: #0a1f35;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(15, 44, 74, 0.2);
+            filter: brightness(110%);
+        }
+        
+        .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(15, 44, 74, 0.3);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .btn-secondary {
             background-color: white;
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
+            border-color: var(--border-color);
+            color: var(--text-muted);
         }
 
         .btn-secondary:hover {
-            background-color: #f0f0f0;
+            background-color: #f9fafb;
+            border-color: #cbd5e1;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         /* Instructions Text */
         .instruction-text {
-            background-color: #eef4fa;
-            padding: 1rem;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--primary-color);
+            background-color: #f0fdfa; /* Light Teal Tint */
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: #134e4a;
+            margin-bottom: 2rem;
+            border: 1px solid #ccfbf1;
+            border-left: 4px solid var(--accent-color);
+            display: flex;
+            align-items: center;
         }
 
     </style>
@@ -398,7 +614,10 @@
         <form id="wellnessSurvey">
             
             <div class="instruction-text">
-                <strong>Practitioner Note:</strong> This master survey removes redundancy between AHC mental health/stress questions and the more detailed EPDS/PSQ sections. The DHQ-II is represented by core domains.
+                <span style="font-size: 1.5rem; margin-right: 1rem;"></span>
+                <div>
+                    <strong>Practitioner Note:</strong> This master survey removes redundancy between AHC mental health/stress questions and the more detailed EPDS/PSQ sections. The DHQ-II is represented by core domains.
+                </div>
             </div>
 
             <!-- SECTION 1 -->
@@ -419,7 +638,7 @@
                                 <input type="month" id="birth_month" name="birth_month">
                             </div>
                             <div class="input-row">
-                                <span class="sub-label">Sex:</span>
+                                <span class="sub-label" style="margin-right: 1rem;">Sex:</span>
                                 <label class="option-label"><input type="radio" name="sex" value="male"> Male</label>
                                 <label class="option-label"><input type="radio" name="sex" value="female"> Female</label>
                             </div>
@@ -515,7 +734,7 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>Safety</legend>
-                            <p style="margin-top:0; font-size:0.95rem;">How often does anyone, including family and friends:</p>
+                            <p style="margin-top:0; font-size:0.95rem; color:var(--text-muted); margin-bottom: 1rem;">How often does anyone, including family and friends:</p>
                             
                             <table class="matrix-table">
                                 <thead>
@@ -593,18 +812,18 @@
                             
                             <label class="sub-label">Does your health now limit you in these activities?</label>
                             
-                            <div style="margin-bottom: 1rem;">
-                                <span style="font-weight: 500;">Moderate activities (moving a table, vacuuming, bowling, golf):</span>
-                                <div class="option-group" style="padding-left: 1rem; margin-top: 0.5rem;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <span style="font-weight: 500; display:block; margin-bottom:0.5rem; color:var(--text-muted);">Moderate activities (moving a table, vacuuming, bowling, golf):</span>
+                                <div class="option-group">
                                     <label class="option-label"><input type="radio" name="limit_mod" value="lot"> Limited a lot</label>
                                     <label class="option-label"><input type="radio" name="limit_mod" value="little"> Limited a little</label>
                                     <label class="option-label"><input type="radio" name="limit_mod" value="not"> Not limited</label>
                                 </div>
                             </div>
                             
-                            <div style="margin-bottom: 1rem;">
-                                <span style="font-weight: 500;">Climbing several flights of stairs:</span>
-                                <div class="option-group" style="padding-left: 1rem; margin-top: 0.5rem;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <span style="font-weight: 500; display:block; margin-bottom:0.5rem; color:var(--text-muted);">Climbing several flights of stairs:</span>
+                                <div class="option-group">
                                     <label class="option-label"><input type="radio" name="limit_stairs" value="lot"> Limited a lot</label>
                                     <label class="option-label"><input type="radio" name="limit_stairs" value="little"> Limited a little</label>
                                     <label class="option-label"><input type="radio" name="limit_stairs" value="not"> Not limited</label>
@@ -628,7 +847,7 @@
                         <fieldset>
                             <legend>Physical Activity</legend>
                             <div class="input-row">
-                                <label for="exercise_days" class="sub-label">In the last 30 days, how many days per week did you engage in moderate exercise?</label>
+                                <label for="exercise_days" class="sub-label" style="width:100%;">In the last 30 days, how many days per week did you engage in moderate exercise?</label>
                                 <!-- Changed from number input to Select for less typing -->
                                 <select id="exercise_days" name="exercise_days">
                                     <option value="" disabled selected>Select days per week...</option>
@@ -643,7 +862,7 @@
                                 </select>
                             </div>
                             <div class="input-row">
-                                <label for="exercise_mins" class="sub-label">On average, how many minutes did you spend exercising on one of those days?</label>
+                                <label for="exercise_mins" class="sub-label" style="width:100%;">On average, how many minutes did you spend exercising on one of those days?</label>
                                 <input type="number" id="exercise_mins" name="exercise_mins" placeholder="Minutes">
                             </div>
                         </fieldset>
@@ -708,7 +927,7 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>Sleep Disturbances (Past Month)</legend>
-                            <p class="sub-label">How often have you had trouble sleeping because you…</p>
+                            <p class="sub-label" style="color:var(--text-muted); margin-bottom:1rem;">How often have you had trouble sleeping because you…</p>
                             
                             <table class="matrix-table">
                                 <thead>
@@ -756,7 +975,7 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>Energy & Fatigue</legend>
-                            <p class="sub-label">Please rate how you usually feel (1 = Never, 5 = Always):</p>
+                            <p class="sub-label" style="color:var(--text-muted); margin-bottom:1rem;">Please rate how you usually feel (1 = Never, 5 = Always):</p>
                             
                             <!-- Converted from number input to Matrix for less typing -->
                             <table class="matrix-table">
@@ -820,9 +1039,9 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>Recent Mood (Past 7 Days)</legend>
-                            <p class="sub-label">Please check the answer that comes closest to how you have felt in the past 7 days.</p>
+                            <p class="sub-label" style="color:var(--text-muted); margin-bottom:1.5rem;">Please check the answer that comes closest to how you have felt in the past 7 days.</p>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have been able to laugh and see the funny side of things:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_laugh" value="always"> As much as I always could</label>
@@ -832,7 +1051,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have looked forward with enjoyment to things:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_enjoy" value="as_much"> As much as I ever did</label>
@@ -842,7 +1061,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have blamed myself unnecessarily when things went wrong:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_blame" value="most"> Yes, most of the time</label>
@@ -852,7 +1071,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have been anxious or worried for no good reason:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_anxious" value="no"> No, not at all</label>
@@ -862,7 +1081,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have felt scared or panicky for no good reason:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_scared" value="quite_a_lot"> Yes, quite a lot</label>
@@ -872,7 +1091,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">Things have been getting to me:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_overwhelmed" value="yes_most"> Yes, most of the time I haven’t been able to cope</label>
@@ -882,7 +1101,7 @@
                                 </div>
                             </div>
                             
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have been so unhappy that I have had difficulty sleeping:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_sleep" value="most"> Yes, most of the time</label>
@@ -892,7 +1111,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have felt sad or miserable:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_sad" value="most"> Yes, most of the time</label>
@@ -902,7 +1121,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">I have been so unhappy that I have been crying:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_crying" value="most"> Yes, most of the time</label>
@@ -912,7 +1131,7 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 1.5rem;">
+                            <div style="margin-bottom: 2rem;">
                                 <label class="sub-label">The thought of harming myself has occurred to me:</label>
                                 <div class="option-group">
                                     <label class="option-label"><input type="radio" name="mood_harm" value="often"> Yes, quite often</label>
@@ -929,7 +1148,7 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>General Stress Assessment</legend>
-                            <p class="sub-label">Rate how often these apply to you in general (1 = Almost Never, 4 = Usually):</p>
+                            <p class="sub-label" style="color:var(--text-muted); margin-bottom:1rem;">Rate how often these apply to you in general (1 = Almost Never, 4 = Usually):</p>
                             
                             <!-- Converted from number input to Matrix for less typing -->
                             <table class="matrix-table">
@@ -1107,7 +1326,7 @@
                     <div class="question-group">
                         <fieldset>
                             <legend>Dietary Intake (Past 12 Months)</legend>
-                            <p class="sub-label">Please indicate your general consumption habits for the following categories.</p>
+                            <p class="sub-label" style="color:var(--text-muted); margin-bottom:1rem;">Please indicate your general consumption habits for the following categories.</p>
 
                             <table class="matrix-table">
                                 <thead>
@@ -1121,7 +1340,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Beverages</td>
+                                        <td colspan="5">Beverages</td>
                                     </tr>
                                     <tr>
                                         <td>Juices (Vegetable, Fruit)</td>
@@ -1146,7 +1365,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Fruits & Vegetables</td>
+                                        <td colspan="5">Fruits & Vegetables</td>
                                     </tr>
                                     <tr>
                                         <td>Whole Fruits (Fresh, Canned, Frozen)</td>
@@ -1171,7 +1390,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Grains & Starches</td>
+                                        <td colspan="5">Grains & Starches</td>
                                     </tr>
                                     <tr>
                                         <td>Whole Grains (Oatmeal, Whole wheat bread)</td>
@@ -1189,7 +1408,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Proteins</td>
+                                        <td colspan="5">Proteins</td>
                                     </tr>
                                     <tr>
                                         <td>Red Meat (Beef, Pork)</td>
@@ -1228,7 +1447,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Sweets & Snacks</td>
+                                        <td colspan="5">Sweets & Snacks</td>
                                     </tr>
                                     <tr>
                                         <td>Salty Snacks (Chips, Pretzels)</td>
