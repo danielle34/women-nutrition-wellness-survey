@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women’s Comprehensive Nutrition & Wellness Assessment</title>
+    <style>
+        :root {
+            /* Professional Healthcare Palette */
+            --primary-color: #0f2c4a; /* Deep Navy */
+            --accent-color: #2a9d8f;  /* Muted Teal */
+            --bg-color: #f4f6f8;      /* Soft Blue-Gray Background */
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #e0e0e0;
+            --focus-glow: rgba(42, 157, 143, 0.25);
+            --danger-color: #d32f2f;
+            --hover-row: #f8fcfc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 60px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            margin: 0.8rem 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 600px; /* Ensure scrolling on small screens */
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--primary-color);
+            background-color: #fafafa;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Form Sections */
+        section {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+            border-left: 5px solid var(--accent-color);
+            scroll-margin-top: 80px; /* For sticky nav offset */
+        }
+
+        .section-header {
+            background-color: #fafafa;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header h2 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+
+        .section-header span {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: normal;
+        }
+
+        .section-body {
+            padding: 2rem;
+        }
+
+        /* Question Groups */
+        .question-group {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .question-group:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        legend {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: block;
+            width: 100%;
+        }
+
+        label.sub-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Inputs */
+        .input-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="month"],
+        input[type="time"],
+        select {
+            padding: 0.6rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+            font-family: inherit;
+        }
+
+        input[type="number"] {
+            width: 100px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px var(--focus-glow);
+        }
+
+        /* Custom Radios/Checkboxes Wrapper */
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            padding: 0.4rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: var(--hover-row);
+        }
+
+        .option-label input {
+            margin-top: 0.3rem;
+            margin-right: 0.8rem;
+            transform: scale(1.1);
+        }
+
+        /* Matrix / Likert Scale Grid */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .matrix-table th, .matrix-table td {
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        
+        .matrix-table td:first-child {
+            text-align: left;
+            width: 40%;
+        }
+
+        .matrix-table th {
+            background-color: #fafafa;
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+
+        .matrix-table th:first-child {
+            text-align: left;
+        }
+
+        .matrix-table tr:hover {
+            background-color: var(--hover-row);
+        }
+
+        /* Scale Labels in Header */
+        .scale-header {
+            font-size: 0.8rem;
+            font-weight: normal;
+            display: block;
+            margin-top: 2px;
+            color: #888;
+        }
+        
+        /* Responsive Matrix for mobile */
+        @media (max-width: 768px) {
+            .matrix-table thead { display: none; }
+            .matrix-table tr { 
+                display: flex; 
+                flex-direction: column; 
+                margin-bottom: 1.5rem; 
+                border: 1px solid var(--border-color); 
+                border-radius: 6px; 
+                overflow: hidden;
+            }
+            .matrix-table td { 
+                display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                border-bottom: 1px solid #eee; 
+                padding: 0.8rem; 
+                text-align: left; 
+                width: 100%;
+            }
+            .matrix-table td:first-child { 
+                font-weight: bold; 
+                background: #f9f9f9; 
+                color: var(--primary-color);
+            }
+            /* Add pseudo-labels for mobile context if needed, 
+               or simple rely on the row layout */
+            .matrix-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                margin-right: 1rem;
+            }
+        }
+
+        /* Grid for 2-column questions */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0a1f35;
+        }
+
+        .btn-secondary {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Instructions Text */
+        .instruction-text {
+            background-color: #eef4fa;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Women’s Comprehensive Nutrition & Wellness Assessment</h1>
+        <p>A consolidated clinical intake form combining multiple validated instruments (PSQ, PSQI, SF-12, FAS, EPDS, AHC, DHQ-II) for women's health and nutrition assessment.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#section1">1. Demographics</a></li>
+            <li><a href="#section2">2. General Health</a></li>
+            <li><a href="#section3">3. Sleep & Energy</a></li>
+            <li><a href="#section4">4. Mental Well-Being</a></li>
+            <li><a href="#section5">5. Nutrition</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <form id="wellnessSurvey">
+            
+            <div class="instruction-text">
+                <strong>Practitioner Note:</strong> This master survey removes redundancy between AHC mental health/stress questions and the more detailed EPDS/PSQ sections. The DHQ-II is represented by core domains.
+            </div>
+
+            <!-- SECTION 1 -->
+            <section id="section1">
+                <div class="section-header">
+                    <h2>Section 1: Demographics, Social & Home Environment</h2>
+                    <span>Source: AHC, DHQ-II Demographics</span>
+                </div>
+                <div class="section-body">
+
+                    <!-- Demographics -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Demographics</legend>
+                            <div class="input-row">
+                                <label for="birth_month">Birth Month/Year:</label>
+                                <!-- Using type="month" for easier selection -->
+                                <input type="month" id="birth_month" name="birth_month">
+                            </div>
+                            <div class="input-row">
+                                <span class="sub-label">Sex:</span>
+                                <label class="option-label"><input type="radio" name="sex" value="male"> Male</label>
+                                <label class="option-label"><input type="radio" name="sex" value="female"> Female</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Living Situation -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Living Situation</legend>
+                            <label class="sub-label">What is your living situation today?</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="living_situation" value="steady"> I have a steady place to live</label>
+                                <label class="option-label"><input type="radio" name="living_situation" value="worried"> I have a place to live today, but I am worried about losing it in the future</label>
+                                <label class="option-label"><input type="radio" name="living_situation" value="none"> I do not have a steady place to live</label>
+                            </div>
+                        </fieldset>
+                        <br>
+                        <fieldset>
+                            <label class="sub-label">Think about the place you live. Do you have problems with any of the following? (Check all that apply)</label>
+                            <div class="grid-2-col">
+                                <div class="option-group">
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="pests"> Pests (bugs, ants, mice)</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="mold"> Mold</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="lead"> Lead paint or pipes</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="heat"> Lack of heat</label>
+                                </div>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="stove"> Oven or stove not working</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="smoke_detectors"> Smoke detectors missing or not working</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="leaks"> Water leaks</label>
+                                    <label class="option-label"><input type="checkbox" name="housing_prob" value="none"> None of the above</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Access & Support -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Access & Support</legend>
+                            
+                            <label class="sub-label">Financial: How hard is it for you to pay for the very basics like food, housing, medical care, and heating?</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="financial" value="very_hard"> Very hard</label>
+                                <label class="option-label"><input type="radio" name="financial" value="somewhat_hard"> Somewhat hard</label>
+                                <label class="option-label"><input type="radio" name="financial" value="not_hard"> Not hard at all</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">Transportation: In the past 12 months, has lack of reliable transportation kept you from medical appointments, meetings, work, or from getting things needed for daily living?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="transport" value="yes"> Yes</label>
+                                <label class="option-label"><input type="radio" name="transport" value="no"> No</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">Support: If you need help with day-to-day activities (bathing, preparing meals, shopping), do you get the help you need?</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="support" value="none_needed"> I don’t need help</label>
+                                <label class="option-label"><input type="radio" name="support" value="all_help"> I get all the help I need</label>
+                                <label class="option-label"><input type="radio" name="support" value="little_more"> I could use a little more help</label>
+                                <label class="option-label"><input type="radio" name="support" value="lot_more"> I need a lot more help</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">Isolation: How often do you feel lonely or isolated from those around you?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="isolation" value="never"> Never</label>
+                                <label class="option-label"><input type="radio" name="isolation" value="rarely"> Rarely</label>
+                                <label class="option-label"><input type="radio" name="isolation" value="sometimes"> Sometimes</label>
+                                <label class="option-label"><input type="radio" name="isolation" value="often"> Often</label>
+                                <label class="option-label"><input type="radio" name="isolation" value="always"> Always</label>
+                            </div>
+                            <br>
+
+                            <div class="grid-2-col">
+                                <div>
+                                    <label class="sub-label">Do you speak a language other than English at home?</label>
+                                    <label class="option-label"><input type="radio" name="language" value="yes"> Yes</label>
+                                    <label class="option-label"><input type="radio" name="language" value="no"> No</label>
+                                </div>
+                                <div>
+                                    <label class="sub-label">Do you want help with school or training?</label>
+                                    <label class="option-label"><input type="radio" name="education_help" value="yes"> Yes</label>
+                                    <label class="option-label"><input type="radio" name="education_help" value="no"> No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Safety -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Safety</legend>
+                            <p style="margin-top:0; font-size:0.95rem;">How often does anyone, including family and friends:</p>
+                            
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th data-label="Never">Never</th>
+                                        <th data-label="Rarely">Rarely</th>
+                                        <th data-label="Sometimes">Sometimes</th>
+                                        <th data-label="Fairly often">Fairly often</th>
+                                        <th data-label="Frequently">Frequently</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Physically hurt you?</td>
+                                        <td data-label="Never"><input type="radio" name="safe_hurt" value="1"></td>
+                                        <td data-label="Rarely"><input type="radio" name="safe_hurt" value="2"></td>
+                                        <td data-label="Sometimes"><input type="radio" name="safe_hurt" value="3"></td>
+                                        <td data-label="Fairly often"><input type="radio" name="safe_hurt" value="4"></td>
+                                        <td data-label="Frequently"><input type="radio" name="safe_hurt" value="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Insult or talk down to you?</td>
+                                        <td data-label="Never"><input type="radio" name="safe_insult" value="1"></td>
+                                        <td data-label="Rarely"><input type="radio" name="safe_insult" value="2"></td>
+                                        <td data-label="Sometimes"><input type="radio" name="safe_insult" value="3"></td>
+                                        <td data-label="Fairly often"><input type="radio" name="safe_insult" value="4"></td>
+                                        <td data-label="Frequently"><input type="radio" name="safe_insult" value="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Threaten you with harm?</td>
+                                        <td data-label="Never"><input type="radio" name="safe_threat" value="1"></td>
+                                        <td data-label="Rarely"><input type="radio" name="safe_threat" value="2"></td>
+                                        <td data-label="Sometimes"><input type="radio" name="safe_threat" value="3"></td>
+                                        <td data-label="Fairly often"><input type="radio" name="safe_threat" value="4"></td>
+                                        <td data-label="Frequently"><input type="radio" name="safe_threat" value="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Scream or curse at you?</td>
+                                        <td data-label="Never"><input type="radio" name="safe_scream" value="1"></td>
+                                        <td data-label="Rarely"><input type="radio" name="safe_scream" value="2"></td>
+                                        <td data-label="Sometimes"><input type="radio" name="safe_scream" value="3"></td>
+                                        <td data-label="Fairly often"><input type="radio" name="safe_scream" value="4"></td>
+                                        <td data-label="Frequently"><input type="radio" name="safe_scream" value="5"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 2 -->
+            <section id="section2">
+                <div class="section-header">
+                    <h2>Section 2: General Health & Physical Activity</h2>
+                    <span>Sources: SF-12, AHC</span>
+                </div>
+                <div class="section-body">
+
+                    <!-- Health Perception -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Health Perception</legend>
+                            <label class="sub-label">In general, would you say your health is:</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="health_gen" value="excellent"> Excellent</label>
+                                <label class="option-label"><input type="radio" name="health_gen" value="very_good"> Very good</label>
+                                <label class="option-label"><input type="radio" name="health_gen" value="good"> Good</label>
+                                <label class="option-label"><input type="radio" name="health_gen" value="fair"> Fair</label>
+                                <label class="option-label"><input type="radio" name="health_gen" value="poor"> Poor</label>
+                            </div>
+                            <br>
+                            
+                            <label class="sub-label">Does your health now limit you in these activities?</label>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <span style="font-weight: 500;">Moderate activities (moving a table, vacuuming, bowling, golf):</span>
+                                <div class="option-group" style="padding-left: 1rem; margin-top: 0.5rem;">
+                                    <label class="option-label"><input type="radio" name="limit_mod" value="lot"> Limited a lot</label>
+                                    <label class="option-label"><input type="radio" name="limit_mod" value="little"> Limited a little</label>
+                                    <label class="option-label"><input type="radio" name="limit_mod" value="not"> Not limited</label>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <span style="font-weight: 500;">Climbing several flights of stairs:</span>
+                                <div class="option-group" style="padding-left: 1rem; margin-top: 0.5rem;">
+                                    <label class="option-label"><input type="radio" name="limit_stairs" value="lot"> Limited a lot</label>
+                                    <label class="option-label"><input type="radio" name="limit_stairs" value="little"> Limited a little</label>
+                                    <label class="option-label"><input type="radio" name="limit_stairs" value="not"> Not limited</label>
+                                </div>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">During the past 4 weeks, how much did pain interfere with your normal work (including work outside the home and housework)?</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="pain" value="not_at_all"> Not at all</label>
+                                <label class="option-label"><input type="radio" name="pain" value="little"> A little bit</label>
+                                <label class="option-label"><input type="radio" name="pain" value="moderate"> Moderately</label>
+                                <label class="option-label"><input type="radio" name="pain" value="quite_a_bit"> Quite a bit</label>
+                                <label class="option-label"><input type="radio" name="pain" value="extremely"> Extremely</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Physical Activity -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Physical Activity</legend>
+                            <div class="input-row">
+                                <label for="exercise_days" class="sub-label">In the last 30 days, how many days per week did you engage in moderate exercise?</label>
+                                <!-- Changed from number input to Select for less typing -->
+                                <select id="exercise_days" name="exercise_days">
+                                    <option value="" disabled selected>Select days per week...</option>
+                                    <option value="0">0 Days</option>
+                                    <option value="1">1 Day</option>
+                                    <option value="2">2 Days</option>
+                                    <option value="3">3 Days</option>
+                                    <option value="4">4 Days</option>
+                                    <option value="5">5 Days</option>
+                                    <option value="6">6 Days</option>
+                                    <option value="7">7 Days</option>
+                                </select>
+                            </div>
+                            <div class="input-row">
+                                <label for="exercise_mins" class="sub-label">On average, how many minutes did you spend exercising on one of those days?</label>
+                                <input type="number" id="exercise_mins" name="exercise_mins" placeholder="Minutes">
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Functional Status -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Functional Status</legend>
+                            <div class="grid-2-col">
+                                <div>
+                                    <label class="sub-label">Do you have serious difficulty concentrating, remembering, or making decisions?</label>
+                                    <label class="option-label"><input type="radio" name="func_conc" value="yes"> Yes</label>
+                                    <label class="option-label"><input type="radio" name="func_conc" value="no"> No</label>
+                                </div>
+                                <div>
+                                    <label class="sub-label">Do you have difficulty doing errands alone (visiting a doctor, shopping)?</label>
+                                    <label class="option-label"><input type="radio" name="func_errands" value="yes"> Yes</label>
+                                    <label class="option-label"><input type="radio" name="func_errands" value="no"> No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 3 -->
+            <section id="section3">
+                <div class="section-header">
+                    <h2>Section 3: Sleep & Energy</h2>
+                    <span>Sources: PSQI, FAS</span>
+                </div>
+                <div class="section-body">
+                    
+                    <!-- Sleep Habits -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Sleep Habits (Past Month)</legend>
+                            <div class="grid-2-col">
+                                <div>
+                                    <label class="sub-label">Usual Bed Time:</label>
+                                    <input type="time" name="bed_time">
+                                </div>
+                                <div>
+                                    <label class="sub-label">Minutes to fall asleep:</label>
+                                    <input type="number" name="mins_to_sleep" placeholder="Minutes">
+                                </div>
+                                <div>
+                                    <label class="sub-label">Usual Wake Time:</label>
+                                    <input type="time" name="wake_time">
+                                </div>
+                                <div>
+                                    <label class="sub-label">Hours of actual sleep per night:</label>
+                                    <input type="number" name="actual_sleep_hours" placeholder="Hours">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Sleep Disturbances -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Sleep Disturbances (Past Month)</legend>
+                            <p class="sub-label">How often have you had trouble sleeping because you…</p>
+                            
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Reason</th>
+                                        <th data-label="Not during past month">None</th>
+                                        <th data-label="Less than once a week">< 1/week</th>
+                                        <th data-label="Once or twice a week">1-2/week</th>
+                                        <th data-label="Three or more times a week">3+/week</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Cannot get to sleep within 30 minutes</td> <td data-label="None"><input type="radio" name="sd_30min" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_30min" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_30min" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_30min" value="3"></td></tr>
+                                    <tr><td>Wake up in the middle of the night or early morning</td> <td data-label="None"><input type="radio" name="sd_wake" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_wake" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_wake" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_wake" value="3"></td></tr>
+                                    <tr><td>Have to get up to use the bathroom</td> <td data-label="None"><input type="radio" name="sd_bath" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_bath" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_bath" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_bath" value="3"></td></tr>
+                                    <tr><td>Cannot breathe comfortably</td> <td data-label="None"><input type="radio" name="sd_breath" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_breath" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_breath" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_breath" value="3"></td></tr>
+                                    <tr><td>Cough or snore loudly</td> <td data-label="None"><input type="radio" name="sd_cough" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_cough" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_cough" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_cough" value="3"></td></tr>
+                                    <tr><td>Feel too cold or too hot</td> <td data-label="None"><input type="radio" name="sd_temp" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_temp" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_temp" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_temp" value="3"></td></tr>
+                                    <tr><td>Had bad dreams</td> <td data-label="None"><input type="radio" name="sd_dreams" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_dreams" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_dreams" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_dreams" value="3"></td></tr>
+                                    <tr><td>Have pain</td> <td data-label="None"><input type="radio" name="sd_pain" value="0"></td> <td data-label="< 1/week"><input type="radio" name="sd_pain" value="1"></td> <td data-label="1-2/week"><input type="radio" name="sd_pain" value="2"></td> <td data-label="3+/week"><input type="radio" name="sd_pain" value="3"></td></tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            
+                            <label class="sub-label">During the past month, how would you rate your sleep quality overall?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="sleep_qual" value="very_good"> Very good</label>
+                                <label class="option-label"><input type="radio" name="sleep_qual" value="fairly_good"> Fairly good</label>
+                                <label class="option-label"><input type="radio" name="sleep_qual" value="fairly_bad"> Fairly bad</label>
+                                <label class="option-label"><input type="radio" name="sleep_qual" value="very_bad"> Very bad</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">How often have you taken medicine to help you sleep?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="sleep_meds" value="none"> Not during past month</label>
+                                <label class="option-label"><input type="radio" name="sleep_meds" value="less_1"> Less than once a week</label>
+                                <label class="option-label"><input type="radio" name="sleep_meds" value="1_2"> 1-2 times a week</label>
+                                <label class="option-label"><input type="radio" name="sleep_meds" value="3plus"> 3+ times a week</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Energy & Fatigue -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Energy & Fatigue</legend>
+                            <p class="sub-label">Please rate how you usually feel (1 = Never, 5 = Always):</p>
+                            
+                            <!-- Converted from number input to Matrix for less typing -->
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Statement</th>
+                                        <th data-label="1">1<br><span class="scale-header">Never</span></th>
+                                        <th data-label="2">2<br><span class="scale-header">Sometimes</span></th>
+                                        <th data-label="3">3<br><span class="scale-header">Regularly</span></th>
+                                        <th data-label="4">4<br><span class="scale-header">Often</span></th>
+                                        <th data-label="5">5<br><span class="scale-header">Always</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>I am bothered by fatigue</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_bother" value="1"></td><td data-label="2"><input type="radio" name="fatigue_bother" value="2"></td><td data-label="3"><input type="radio" name="fatigue_bother" value="3"></td><td data-label="4"><input type="radio" name="fatigue_bother" value="4"></td><td data-label="5"><input type="radio" name="fatigue_bother" value="5"></td></tr>
+                                    
+                                    <tr><td>I get tired very quickly</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_tired" value="1"></td><td data-label="2"><input type="radio" name="fatigue_tired" value="2"></td><td data-label="3"><input type="radio" name="fatigue_tired" value="3"></td><td data-label="4"><input type="radio" name="fatigue_tired" value="4"></td><td data-label="5"><input type="radio" name="fatigue_tired" value="5"></td></tr>
+                                    
+                                    <tr><td>I don’t do much during the day</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_activity" value="1"></td><td data-label="2"><input type="radio" name="fatigue_activity" value="2"></td><td data-label="3"><input type="radio" name="fatigue_activity" value="3"></td><td data-label="4"><input type="radio" name="fatigue_activity" value="4"></td><td data-label="5"><input type="radio" name="fatigue_activity" value="5"></td></tr>
+                                    
+                                    <tr><td>I have enough energy for everyday life</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_energy" value="1"></td><td data-label="2"><input type="radio" name="fatigue_energy" value="2"></td><td data-label="3"><input type="radio" name="fatigue_energy" value="3"></td><td data-label="4"><input type="radio" name="fatigue_energy" value="4"></td><td data-label="5"><input type="radio" name="fatigue_energy" value="5"></td></tr>
+                                    
+                                    <tr><td>Physically, I feel exhausted</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_phys" value="1"></td><td data-label="2"><input type="radio" name="fatigue_phys" value="2"></td><td data-label="3"><input type="radio" name="fatigue_phys" value="3"></td><td data-label="4"><input type="radio" name="fatigue_phys" value="4"></td><td data-label="5"><input type="radio" name="fatigue_phys" value="5"></td></tr>
+                                    
+                                    <tr><td>I have problems starting things</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_start" value="1"></td><td data-label="2"><input type="radio" name="fatigue_start" value="2"></td><td data-label="3"><input type="radio" name="fatigue_start" value="3"></td><td data-label="4"><input type="radio" name="fatigue_start" value="4"></td><td data-label="5"><input type="radio" name="fatigue_start" value="5"></td></tr>
+                                    
+                                    <tr><td>I have problems thinking clearly</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_think" value="1"></td><td data-label="2"><input type="radio" name="fatigue_think" value="2"></td><td data-label="3"><input type="radio" name="fatigue_think" value="3"></td><td data-label="4"><input type="radio" name="fatigue_think" value="4"></td><td data-label="5"><input type="radio" name="fatigue_think" value="5"></td></tr>
+                                    
+                                    <tr><td>I feel no desire to do anything</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_desire" value="1"></td><td data-label="2"><input type="radio" name="fatigue_desire" value="2"></td><td data-label="3"><input type="radio" name="fatigue_desire" value="3"></td><td data-label="4"><input type="radio" name="fatigue_desire" value="4"></td><td data-label="5"><input type="radio" name="fatigue_desire" value="5"></td></tr>
+                                    
+                                    <tr><td>Mentally, I feel exhausted</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_mental" value="1"></td><td data-label="2"><input type="radio" name="fatigue_mental" value="2"></td><td data-label="3"><input type="radio" name="fatigue_mental" value="3"></td><td data-label="4"><input type="radio" name="fatigue_mental" value="4"></td><td data-label="5"><input type="radio" name="fatigue_mental" value="5"></td></tr>
+                                    
+                                    <tr><td>When doing something, I can concentrate well</td>
+                                    <td data-label="1"><input type="radio" name="fatigue_conc" value="1"></td><td data-label="2"><input type="radio" name="fatigue_conc" value="2"></td><td data-label="3"><input type="radio" name="fatigue_conc" value="3"></td><td data-label="4"><input type="radio" name="fatigue_conc" value="4"></td><td data-label="5"><input type="radio" name="fatigue_conc" value="5"></td></tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 4 -->
+            <section id="section4">
+                <div class="section-header">
+                    <h2>Section 4: Mental & Emotional Well-Being</h2>
+                    <span>Sources: EPDS, PSQ</span>
+                </div>
+                <div class="section-body">
+
+                    <!-- Recent Mood -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Recent Mood (Past 7 Days)</legend>
+                            <p class="sub-label">Please check the answer that comes closest to how you have felt in the past 7 days.</p>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have been able to laugh and see the funny side of things:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_laugh" value="always"> As much as I always could</label>
+                                    <label class="option-label"><input type="radio" name="mood_laugh" value="not_quite"> Not quite so much now</label>
+                                    <label class="option-label"><input type="radio" name="mood_laugh" value="definitely_not"> Definitely not so much now</label>
+                                    <label class="option-label"><input type="radio" name="mood_laugh" value="not_at_all"> Not at all</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have looked forward with enjoyment to things:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_enjoy" value="as_much"> As much as I ever did</label>
+                                    <label class="option-label"><input type="radio" name="mood_enjoy" value="rather_less"> Rather less than I used to</label>
+                                    <label class="option-label"><input type="radio" name="mood_enjoy" value="definitely_less"> Definitely less than I used to</label>
+                                    <label class="option-label"><input type="radio" name="mood_enjoy" value="hardly"> Hardly at all</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have blamed myself unnecessarily when things went wrong:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_blame" value="most"> Yes, most of the time</label>
+                                    <label class="option-label"><input type="radio" name="mood_blame" value="some"> Yes, some of the time</label>
+                                    <label class="option-label"><input type="radio" name="mood_blame" value="not_often"> Not very often</label>
+                                    <label class="option-label"><input type="radio" name="mood_blame" value="never"> No, never</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have been anxious or worried for no good reason:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_anxious" value="no"> No, not at all</label>
+                                    <label class="option-label"><input type="radio" name="mood_anxious" value="hardly"> Hardly ever</label>
+                                    <label class="option-label"><input type="radio" name="mood_anxious" value="sometimes"> Yes, sometimes</label>
+                                    <label class="option-label"><input type="radio" name="mood_anxious" value="often"> Yes, very often</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have felt scared or panicky for no good reason:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_scared" value="quite_a_lot"> Yes, quite a lot</label>
+                                    <label class="option-label"><input type="radio" name="mood_scared" value="sometimes"> Yes, sometimes</label>
+                                    <label class="option-label"><input type="radio" name="mood_scared" value="not_much"> No, not much</label>
+                                    <label class="option-label"><input type="radio" name="mood_scared" value="not_at_all"> No, not at all</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">Things have been getting to me:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_overwhelmed" value="yes_most"> Yes, most of the time I haven’t been able to cope</label>
+                                    <label class="option-label"><input type="radio" name="mood_overwhelmed" value="yes_some"> Yes, sometimes I haven’t been coping as well</label>
+                                    <label class="option-label"><input type="radio" name="mood_overwhelmed" value="no_most"> No, most of the time I have coped quite well</label>
+                                    <label class="option-label"><input type="radio" name="mood_overwhelmed" value="no_well"> No, I have been coping as well as ever</label>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have been so unhappy that I have had difficulty sleeping:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_sleep" value="most"> Yes, most of the time</label>
+                                    <label class="option-label"><input type="radio" name="mood_sleep" value="sometimes"> Yes, sometimes</label>
+                                    <label class="option-label"><input type="radio" name="mood_sleep" value="not_often"> Not very often</label>
+                                    <label class="option-label"><input type="radio" name="mood_sleep" value="not_at_all"> No, not at all</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have felt sad or miserable:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_sad" value="most"> Yes, most of the time</label>
+                                    <label class="option-label"><input type="radio" name="mood_sad" value="quite_often"> Yes, quite often</label>
+                                    <label class="option-label"><input type="radio" name="mood_sad" value="not_often"> Not very often</label>
+                                    <label class="option-label"><input type="radio" name="mood_sad" value="no"> No, not at all</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">I have been so unhappy that I have been crying:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_crying" value="most"> Yes, most of the time</label>
+                                    <label class="option-label"><input type="radio" name="mood_crying" value="quite_often"> Yes, quite often</label>
+                                    <label class="option-label"><input type="radio" name="mood_crying" value="occasionally"> Only occasionally</label>
+                                    <label class="option-label"><input type="radio" name="mood_crying" value="never"> No, never</label>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <label class="sub-label">The thought of harming myself has occurred to me:</label>
+                                <div class="option-group">
+                                    <label class="option-label"><input type="radio" name="mood_harm" value="often"> Yes, quite often</label>
+                                    <label class="option-label"><input type="radio" name="mood_harm" value="sometimes"> Sometimes</label>
+                                    <label class="option-label"><input type="radio" name="mood_harm" value="hardly"> Hardly ever</label>
+                                    <label class="option-label"><input type="radio" name="mood_harm" value="never"> Never</label>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                    <!-- General Stress Assessment -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>General Stress Assessment</legend>
+                            <p class="sub-label">Rate how often these apply to you in general (1 = Almost Never, 4 = Usually):</p>
+                            
+                            <!-- Converted from number input to Matrix for less typing -->
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Statement</th>
+                                        <th data-label="1">1<br><span class="scale-header">Almost Never</span></th>
+                                        <th data-label="2">2<br><span class="scale-header">Sometimes</span></th>
+                                        <th data-label="3">3<br><span class="scale-header">Often</span></th>
+                                        <th data-label="4">4<br><span class="scale-header">Usually</span></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>You feel rested</td>
+                                    <td data-label="1"><input type="radio" name="stress_rested" value="1"></td><td data-label="2"><input type="radio" name="stress_rested" value="2"></td><td data-label="3"><input type="radio" name="stress_rested" value="3"></td><td data-label="4"><input type="radio" name="stress_rested" value="4"></td></tr>
+                                    
+                                    <tr><td>Too many demands made on you</td>
+                                    <td data-label="1"><input type="radio" name="stress_demands" value="1"></td><td data-label="2"><input type="radio" name="stress_demands" value="2"></td><td data-label="3"><input type="radio" name="stress_demands" value="3"></td><td data-label="4"><input type="radio" name="stress_demands" value="4"></td></tr>
+                                    
+                                    <tr><td>You are irritable or grouchy</td>
+                                    <td data-label="1"><input type="radio" name="stress_irritable" value="1"></td><td data-label="2"><input type="radio" name="stress_irritable" value="2"></td><td data-label="3"><input type="radio" name="stress_irritable" value="3"></td><td data-label="4"><input type="radio" name="stress_irritable" value="4"></td></tr>
+                                    
+                                    <tr><td>You have too many things to do</td>
+                                    <td data-label="1"><input type="radio" name="stress_busy" value="1"></td><td data-label="2"><input type="radio" name="stress_busy" value="2"></td><td data-label="3"><input type="radio" name="stress_busy" value="3"></td><td data-label="4"><input type="radio" name="stress_busy" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel lonely or isolated</td>
+                                    <td data-label="1"><input type="radio" name="stress_lonely" value="1"></td><td data-label="2"><input type="radio" name="stress_lonely" value="2"></td><td data-label="3"><input type="radio" name="stress_lonely" value="3"></td><td data-label="4"><input type="radio" name="stress_lonely" value="4"></td></tr>
+                                    
+                                    <tr><td>You find yourself in situations of conflict</td>
+                                    <td data-label="1"><input type="radio" name="stress_conflict" value="1"></td><td data-label="2"><input type="radio" name="stress_conflict" value="2"></td><td data-label="3"><input type="radio" name="stress_conflict" value="3"></td><td data-label="4"><input type="radio" name="stress_conflict" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel you’re doing things you really like</td>
+                                    <td data-label="1"><input type="radio" name="stress_like" value="1"></td><td data-label="2"><input type="radio" name="stress_like" value="2"></td><td data-label="3"><input type="radio" name="stress_like" value="3"></td><td data-label="4"><input type="radio" name="stress_like" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel tired</td>
+                                    <td data-label="1"><input type="radio" name="stress_tired" value="1"></td><td data-label="2"><input type="radio" name="stress_tired" value="2"></td><td data-label="3"><input type="radio" name="stress_tired" value="3"></td><td data-label="4"><input type="radio" name="stress_tired" value="4"></td></tr>
+                                    
+                                    <tr><td>You fear you may not manage to attain your goals</td>
+                                    <td data-label="1"><input type="radio" name="stress_goals" value="1"></td><td data-label="2"><input type="radio" name="stress_goals" value="2"></td><td data-label="3"><input type="radio" name="stress_goals" value="3"></td><td data-label="4"><input type="radio" name="stress_goals" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel calm</td>
+                                    <td data-label="1"><input type="radio" name="stress_calm" value="1"></td><td data-label="2"><input type="radio" name="stress_calm" value="2"></td><td data-label="3"><input type="radio" name="stress_calm" value="3"></td><td data-label="4"><input type="radio" name="stress_calm" value="4"></td></tr>
+                                    
+                                    <tr><td>You have too many decisions to make</td>
+                                    <td data-label="1"><input type="radio" name="stress_decisions" value="1"></td><td data-label="2"><input type="radio" name="stress_decisions" value="2"></td><td data-label="3"><input type="radio" name="stress_decisions" value="3"></td><td data-label="4"><input type="radio" name="stress_decisions" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel frustrated</td>
+                                    <td data-label="1"><input type="radio" name="stress_frustrated" value="1"></td><td data-label="2"><input type="radio" name="stress_frustrated" value="2"></td><td data-label="3"><input type="radio" name="stress_frustrated" value="3"></td><td data-label="4"><input type="radio" name="stress_frustrated" value="4"></td></tr>
+                                    
+                                    <tr><td>You are full of energy</td>
+                                    <td data-label="1"><input type="radio" name="stress_energy" value="1"></td><td data-label="2"><input type="radio" name="stress_energy" value="2"></td><td data-label="3"><input type="radio" name="stress_energy" value="3"></td><td data-label="4"><input type="radio" name="stress_energy" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel tense</td>
+                                    <td data-label="1"><input type="radio" name="stress_tense" value="1"></td><td data-label="2"><input type="radio" name="stress_tense" value="2"></td><td data-label="3"><input type="radio" name="stress_tense" value="3"></td><td data-label="4"><input type="radio" name="stress_tense" value="4"></td></tr>
+                                    
+                                    <tr><td>Your problems seem to be piling up</td>
+                                    <td data-label="1"><input type="radio" name="stress_piling" value="1"></td><td data-label="2"><input type="radio" name="stress_piling" value="2"></td><td data-label="3"><input type="radio" name="stress_piling" value="3"></td><td data-label="4"><input type="radio" name="stress_piling" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel you’re in a hurry</td>
+                                    <td data-label="1"><input type="radio" name="stress_hurry" value="1"></td><td data-label="2"><input type="radio" name="stress_hurry" value="2"></td><td data-label="3"><input type="radio" name="stress_hurry" value="3"></td><td data-label="4"><input type="radio" name="stress_hurry" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel safe and protected</td>
+                                    <td data-label="1"><input type="radio" name="stress_safe" value="1"></td><td data-label="2"><input type="radio" name="stress_safe" value="2"></td><td data-label="3"><input type="radio" name="stress_safe" value="3"></td><td data-label="4"><input type="radio" name="stress_safe" value="4"></td></tr>
+                                    
+                                    <tr><td>You have many worries</td>
+                                    <td data-label="1"><input type="radio" name="stress_worries" value="1"></td><td data-label="2"><input type="radio" name="stress_worries" value="2"></td><td data-label="3"><input type="radio" name="stress_worries" value="3"></td><td data-label="4"><input type="radio" name="stress_worries" value="4"></td></tr>
+                                    
+                                    <tr><td>You are under pressure from other people</td>
+                                    <td data-label="1"><input type="radio" name="stress_pressure" value="1"></td><td data-label="2"><input type="radio" name="stress_pressure" value="2"></td><td data-label="3"><input type="radio" name="stress_pressure" value="3"></td><td data-label="4"><input type="radio" name="stress_pressure" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel discouraged</td>
+                                    <td data-label="1"><input type="radio" name="stress_discouraged" value="1"></td><td data-label="2"><input type="radio" name="stress_discouraged" value="2"></td><td data-label="3"><input type="radio" name="stress_discouraged" value="3"></td><td data-label="4"><input type="radio" name="stress_discouraged" value="4"></td></tr>
+                                    
+                                    <tr><td>You enjoy yourself</td>
+                                    <td data-label="1"><input type="radio" name="stress_enjoy" value="1"></td><td data-label="2"><input type="radio" name="stress_enjoy" value="2"></td><td data-label="3"><input type="radio" name="stress_enjoy" value="3"></td><td data-label="4"><input type="radio" name="stress_enjoy" value="4"></td></tr>
+                                    
+                                    <tr><td>You are afraid for the future</td>
+                                    <td data-label="1"><input type="radio" name="stress_future" value="1"></td><td data-label="2"><input type="radio" name="stress_future" value="2"></td><td data-label="3"><input type="radio" name="stress_future" value="3"></td><td data-label="4"><input type="radio" name="stress_future" value="4"></td></tr>
+                                    
+                                    <tr><td>You do things because you have to, not because you want to</td>
+                                    <td data-label="1"><input type="radio" name="stress_obligation" value="1"></td><td data-label="2"><input type="radio" name="stress_obligation" value="2"></td><td data-label="3"><input type="radio" name="stress_obligation" value="3"></td><td data-label="4"><input type="radio" name="stress_obligation" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel criticized or judged</td>
+                                    <td data-label="1"><input type="radio" name="stress_judged" value="1"></td><td data-label="2"><input type="radio" name="stress_judged" value="2"></td><td data-label="3"><input type="radio" name="stress_judged" value="3"></td><td data-label="4"><input type="radio" name="stress_judged" value="4"></td></tr>
+                                    
+                                    <tr><td>You are lighthearted</td>
+                                    <td data-label="1"><input type="radio" name="stress_lighthearted" value="1"></td><td data-label="2"><input type="radio" name="stress_lighthearted" value="2"></td><td data-label="3"><input type="radio" name="stress_lighthearted" value="3"></td><td data-label="4"><input type="radio" name="stress_lighthearted" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel mentally exhausted</td>
+                                    <td data-label="1"><input type="radio" name="stress_mental_ex" value="1"></td><td data-label="2"><input type="radio" name="stress_mental_ex" value="2"></td><td data-label="3"><input type="radio" name="stress_mental_ex" value="3"></td><td data-label="4"><input type="radio" name="stress_mental_ex" value="4"></td></tr>
+                                    
+                                    <tr><td>You have trouble relaxing</td>
+                                    <td data-label="1"><input type="radio" name="stress_relax" value="1"></td><td data-label="2"><input type="radio" name="stress_relax" value="2"></td><td data-label="3"><input type="radio" name="stress_relax" value="3"></td><td data-label="4"><input type="radio" name="stress_relax" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel loaded down with responsibility</td>
+                                    <td data-label="1"><input type="radio" name="stress_resp" value="1"></td><td data-label="2"><input type="radio" name="stress_resp" value="2"></td><td data-label="3"><input type="radio" name="stress_resp" value="3"></td><td data-label="4"><input type="radio" name="stress_resp" value="4"></td></tr>
+                                    
+                                    <tr><td>You have enough time for yourself</td>
+                                    <td data-label="1"><input type="radio" name="stress_time" value="1"></td><td data-label="2"><input type="radio" name="stress_time" value="2"></td><td data-label="3"><input type="radio" name="stress_time" value="3"></td><td data-label="4"><input type="radio" name="stress_time" value="4"></td></tr>
+                                    
+                                    <tr><td>You feel under pressure from deadlines</td>
+                                    <td data-label="1"><input type="radio" name="stress_deadlines" value="1"></td><td data-label="2"><input type="radio" name="stress_deadlines" value="2"></td><td data-label="3"><input type="radio" name="stress_deadlines" value="3"></td><td data-label="4"><input type="radio" name="stress_deadlines" value="4"></td></tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 5 -->
+            <section id="section5">
+                <div class="section-header">
+                    <h2>Section 5: Nutrition & Diet History</h2>
+                    <span>Sources: DHQ-II, AHC</span>
+                </div>
+                <div class="section-body">
+
+                    <!-- Food Access -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Food Access & Habits (Past 12 Months)</legend>
+                            
+                            <label class="sub-label">“I worried that my food would run out before I got money to buy more.”</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="food_worry" value="often"> Often true</label>
+                                <label class="option-label"><input type="radio" name="food_worry" value="sometimes"> Sometimes true</label>
+                                <label class="option-label"><input type="radio" name="food_worry" value="never"> Never true</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">“The food I bought just didn’t last and I didn’t have money to get more.”</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="radio" name="food_out" value="often"> Often true</label>
+                                <label class="option-label"><input type="radio" name="food_out" value="sometimes"> Sometimes true</label>
+                                <label class="option-label"><input type="radio" name="food_out" value="never"> Never true</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Substance Use -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Substance Use (Past 12 Months)</legend>
+                            
+                            <label class="sub-label">Alcohol: How often have you had 4 or more drinks in one day?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="sub_alcohol" value="never"> Never</label>
+                                <label class="option-label"><input type="radio" name="sub_alcohol" value="monthly"> Monthly or less</label>
+                                <label class="option-label"><input type="radio" name="sub_alcohol" value="weekly"> Weekly</label>
+                                <label class="option-label"><input type="radio" name="sub_alcohol" value="daily"> Daily</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">Tobacco: How often have you used tobacco products?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="sub_tobacco" value="never"> Never</label>
+                                <label class="option-label"><input type="radio" name="sub_tobacco" value="monthly"> Monthly or less</label>
+                                <label class="option-label"><input type="radio" name="sub_tobacco" value="weekly"> Weekly</label>
+                                <label class="option-label"><input type="radio" name="sub_tobacco" value="daily"> Daily</label>
+                            </div>
+                            <br>
+
+                            <label class="sub-label">Drugs: How often have you used prescription drugs for non-medical reasons or illegal drugs?</label>
+                            <div class="input-row">
+                                <label class="option-label"><input type="radio" name="sub_drugs" value="never"> Never</label>
+                                <label class="option-label"><input type="radio" name="sub_drugs" value="monthly"> Monthly or less</label>
+                                <label class="option-label"><input type="radio" name="sub_drugs" value="weekly"> Weekly</label>
+                                <label class="option-label"><input type="radio" name="sub_drugs" value="daily"> Daily</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <!-- Dietary Intake -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Dietary Intake (Past 12 Months)</legend>
+                            <p class="sub-label">Please indicate your general consumption habits for the following categories.</p>
+
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th data-label="Never">Never</th>
+                                        <th data-label="Monthly">Monthly</th>
+                                        <th data-label="Weekly">Weekly</th>
+                                        <th data-label="Daily">Daily</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Beverages</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Juices (Vegetable, Fruit)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_juice" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_juice" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_juice" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_juice" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sweetened Drinks (Soda, Sports, Energy)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_soda" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_soda" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_soda" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_soda" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Milk/Dairy Alternatives</td>
+                                        <td data-label="Never"><input type="radio" name="diet_milk" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_milk" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_milk" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_milk" value="daily"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Fruits & Vegetables</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Whole Fruits (Fresh, Canned, Frozen)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_fruit" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_fruit" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_fruit" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_fruit" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Leafy Greens & Cruciferous Veg</td>
+                                        <td data-label="Never"><input type="radio" name="diet_greens" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_greens" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_greens" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_greens" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Starchy Vegetables (Corn, Potatoes)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_starchveg" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_starchveg" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_starchveg" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_starchveg" value="daily"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Grains & Starches</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Whole Grains (Oatmeal, Whole wheat bread)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_wholegrain" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_wholegrain" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_wholegrain" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_wholegrain" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Refined Grains (White bread, Pasta, White rice)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_refined" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_refined" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_refined" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_refined" value="daily"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Proteins</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Red Meat (Beef, Pork)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_redmeat" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_redmeat" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_redmeat" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_redmeat" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Processed Meat (Bacon, Sausage, Deli)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_procmeat" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_procmeat" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_procmeat" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_procmeat" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Poultry (Chicken, Turkey)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_poultry" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_poultry" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_poultry" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_poultry" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seafood (Fish, Shellfish)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_seafood" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_seafood" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_seafood" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_seafood" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Plant Protein (Beans, Nuts, Tofu)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_plant" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_plant" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_plant" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_plant" value="daily"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" style="background-color: #f0f0f0; font-weight:bold; font-size:0.9rem;">Sweets & Snacks</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Salty Snacks (Chips, Pretzels)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_salty" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_salty" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_salty" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_salty" value="daily"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sweets (Cookies, Cake, Ice cream)</td>
+                                        <td data-label="Never"><input type="radio" name="diet_sweet" value="never"></td>
+                                        <td data-label="Monthly"><input type="radio" name="diet_sweet" value="monthly"></td>
+                                        <td data-label="Weekly"><input type="radio" name="diet_sweet" value="weekly"></td>
+                                        <td data-label="Daily"><input type="radio" name="diet_sweet" value="daily"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                    <!-- Supplements -->
+                    <div class="question-group">
+                        <fieldset>
+                            <legend>Supplements</legend>
+                            <label class="sub-label">Do you take any of the following? (Check all that apply)</label>
+                            <div class="option-group">
+                                <label class="option-label"><input type="checkbox" name="supplements" value="multivitamin"> Multivitamin</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="calcium"> Calcium</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="vit_d"> Vitamin D</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="iron"> Iron</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="vit_c"> Vitamin C</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="fish_oil"> Fish Oil</label>
+                                <label class="option-label"><input type="checkbox" name="supplements" value="probiotics"> Probiotics</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="window.print()">Print or Save as PDF</button>
+                <button type="submit" class="btn btn-primary" onclick="alert('Demo: Survey Data Captured'); return false;">Submit (Demo Only)</button>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+</html>
