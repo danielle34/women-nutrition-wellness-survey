@@ -14,19 +14,4 @@ The purpose of this demo is to:
 - Fully structured question grouping (Demographics, Health, Sleep, Mental Health, Diet)  
 - Ready for client or practitioner review  
 
-## How to Use
-1. Open `index.html` in any browser  
-2. Review the layout and question flow  
-3. Customize the form as needed for clinical workflows  
-
-## Hosting with GitHub Pages
-This project is configured to work with **GitHub Pages**.
-
-**To enable:**
-1. Go to **Settings → Pages**  
-2. Under “Source,” select **Deploy from branch**  
-3. Choose **main branch**  
-4. Keep folder as **/** (root)  
-5. Save  
-
 Your site will be published at: 
