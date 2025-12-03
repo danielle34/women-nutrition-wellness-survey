@@ -14,4 +14,4 @@ The purpose of this demo is to:
 - Fully structured question grouping (Demographics, Health, Sleep, Mental Health, Diet)  
 - Ready for client or practitioner review  
 
-Your site will be published at: 
+Site link: https://danielle34.github.io/women-nutrition-wellness-survey/
